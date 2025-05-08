@@ -8,7 +8,14 @@ li.image {
   margin: 10px;
 }
 li.image img {
-  max-width: 150px;
   height: auto;
   display: block;
+}
+
+.images.image {
+  width: 320px;
+}
+
+img {
+  width: 100%;
 }
