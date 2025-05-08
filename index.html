@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./style.css">
+  <script defer src="./script.js"></script>
+  <!-- Owl Carousel CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" />
+<!-- jQuery (required by Owl Carousel) -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Owl Carousel JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+
+
+  <title>Headshots</title>
+</head>
+<body>
+
+  <p>Please help me pick!</p>
+  <h2>All Images</h2>
+  <div class="owl-carousel" id="carousel-all"></div>
+  
+  <h2>Serious</h2>
+  <div class="owl-carousel" id="carousel-serious"></div>
+  
+  <h2>Slight Smile</h2>
+  <div class="owl-carousel" id="carousel-slight-smile"></div>
+  
+  <h2>Smile</h2>
+  <div class="owl-carousel" id="carousel-smile"></div>
+  
+  
+
+<script>
+function isElementInViewport(el) {
+  const rect = el.getBoundingClientRect();
+  const threshold = 100; // pixels of visibility required
+
+  return (
+    rect.bottom >= threshold &&
+    rect.top <= window.innerHeight - threshold
+  );
+}
+
+$(document).on('keydown', function (e) {
+  const carousels = document.querySelectorAll('.owl-carousel');
+  let visibleCarousels = [];
+
+  carousels.forEach(carousel => {
+    if (isElementInViewport(carousel)) {
+      visibleCarousels.push({
+        el: $(carousel),
+        top: carousel.getBoundingClientRect().top
+      });
+    }
+  });
+
+  if (visibleCarousels.length > 0) {
+    // Choose the lowest visible one (last in view)
+    visibleCarousels.sort((a, b) => b.top - a.top);
+    const activeCarousel = visibleCarousels[0].el;
+
+    if (e.key === "ArrowLeft") {
+      activeCarousel.trigger('prev.owl.carousel');
+    } else if (e.key === "ArrowRight") {
+      activeCarousel.trigger('next.owl.carousel');
+    }
+  }
+});
+
+
+
+</script>
+</body>
+</html>

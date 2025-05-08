@@ -1,0 +1,14 @@
+ul.images {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+li.image {
+  margin: 10px;
+}
+li.image img {
+  max-width: 150px;
+  height: auto;
+  display: block;
+}
